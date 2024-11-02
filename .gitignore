@@ -26,3 +26,6 @@ nginx/conf.d/
 # IDEs and editors
 .idea/
 .vscode/
+
+# Python
+*__pycache__

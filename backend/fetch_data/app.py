@@ -1,8 +1,10 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import requests
 import logging
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173"])
 
 @app.route("/fetch_data", methods=["GET"])
 def fetch_data():

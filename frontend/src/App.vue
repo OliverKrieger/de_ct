@@ -5,7 +5,7 @@
 </template>
 
 <script setup lang="ts">
-  import RequestData from './components/RequestData.vue'
+  import RequestData from './components/data_requests/RequestDatasets.vue'
 </script>
 
 <style scoped>

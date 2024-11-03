@@ -1,4 +1,5 @@
 from flask import Flask, jsonify, request
+from flask_cors import CORS
 import requests
 import zipfile
 import os
@@ -8,6 +9,7 @@ from io import BytesIO
 import logging
 
 app = Flask(__name__)
+CORS(app, origins=["http://localhost:5173"])
 
 @app.route("/fetch_emission_data", methods=["GET"])
 def fetch_emission_data():

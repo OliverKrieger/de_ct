@@ -2,6 +2,7 @@
     <div class="country-datasets-container">
         <div v-if="countryDataset">
             {{ countryDataset }}
+            <button class="bg-gray-700 hover:bg-gray-800 hover:border-gray-800 text-white font-bold py-2 px-4 rounded transition-all duration-300" @click="clear">Clear</button>
         </div>
         <div class="loader-container" v-else>
             <div class="loader-wrapper">
@@ -22,8 +23,12 @@
 
     let countryDataset = ref<CountryDatasets | null>(null);
     faoVisStore.$subscribe(() => {
-        countryDataset.value = faoVisStore.selectedCountryDataset
+        countryDataset.value = faoVisStore.selectedCountryDataset;
     }, { detached: true })
+
+    function clear(){
+        faoVisStore.clearDataset();
+    }
 </script>
 
 <style scoped>

@@ -29,6 +29,7 @@ export const handlerFaoVisStore = defineStore('faoVis', {
         },
         clearDataset() {
             this.selectedDataset = null;
+            this.selectedCountryDataset = null;
         },
     },
 });

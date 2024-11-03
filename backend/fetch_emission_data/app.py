@@ -54,8 +54,10 @@ def filterData(records_data:dict) -> dict:
             if entry["Area"] not in filteredData:
                 filteredData[entry["Area"]] = {
                     "Area Code": entry["Area Code"],
-                    "Values": []
+                    "Years": [],
+                    "Values":[]
                 }
-            filteredData[entry["Area"]]["Values"].append((entry["Year"], entry["Value"]))
+            filteredData[entry["Area"]]["Years"].append(entry["Year"])
+            filteredData[entry["Area"]]["Values"].append(entry["Value"])
 
     return filteredData

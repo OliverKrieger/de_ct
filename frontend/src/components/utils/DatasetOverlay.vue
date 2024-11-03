@@ -3,15 +3,15 @@
         <div v-if="dataset" class="overlay" @click.self="clear">
             <div class="overlay-content bg-gray-900">
                 <div class="content">
-                    <h2 class="text-l">{{ dataset.DatasetName }}</h2>
+                    <h2 class="text-xl underline text-center">{{ dataset.DatasetName }}</h2>
                     <p><strong>Code:</strong> {{ dataset.DatasetCode }} </p>
-                    <p><strong>Description:</strong> {{ dataset.DatasetDescription }}</p>
                     <p><strong>Contact:</strong> {{ dataset.Contact }}</p>
                     <p><strong>Email:</strong> {{ dataset.Email }}</p>
                     <p><strong>Last Updated:</strong> {{ dataset.DateUpdate }}</p>
                     <p><strong>File Size:</strong> {{ dataset.FileSize }}</p>
                     <p><strong>File Type:</strong> {{ dataset.FileType }}</p>
                     <p><strong>File Location:</strong> {{ dataset.FileLocation }}</p>
+                    <p class="my-2"><strong>Description:</strong> {{ dataset.DatasetDescription }}</p>
                 </div>
                 <button class="bg-rose-500 hover:bg-rose-700 hover:border-rose-700 text-white font-bold py-2 px-4 rounded transition-all duration-300" @click="clear">Close</button>
             </div>

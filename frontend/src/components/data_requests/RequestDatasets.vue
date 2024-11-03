@@ -3,9 +3,9 @@
         <h1 class="text-xl">Datasets</h1>
         <div v-if="datasets" class="flex flex-wrap">
             <div class="w-1/4 p-2 hover:bg-rose-900 transition-all duration-300 cursor-pointer" v-for="(dataset, index) in datasets.Datasets.Dataset" :key="index">
-                <div class="dataset-card">
+                <div class="dataset-card" @click="handle_dataset_select(dataset)">
                     <h2 class="text-l">{{ dataset.DatasetName }}</h2>
-                    <p><strong>Code:</strong> <span :class="dataset.DatasetCode=='GCE' ? 'text-rose-500' : ''"> {{ dataset.DatasetCode }} </span></p>
+                    <p><strong>Code:</strong> <span :class="highlightedCodes.includes(dataset.DatasetCode) ? 'text-rose-500' : ''"> {{ dataset.DatasetCode }} </span></p>
                     <!-- <p><strong>Description:</strong> {{ dataset.DatasetDescription }}</p>
                     <p><strong>Contact:</strong> {{ dataset.Contact }}</p>
                     <p><strong>Email:</strong> {{ dataset.Email }}</p>
@@ -30,10 +30,15 @@
     
     import Loader from '../utils/Loader.vue';
 
-    import { FaostatDatasets } from "../../types/type_faostat_dataset";
+    import { FaostatDatasets, FaostatDataset } from "../../types/type_faostat_dataset";
+
+    import { handlerDatasetStore } from '../../stores/dataset_handler';
+    
+    const datasetStore = handlerDatasetStore();
 
     const apiURL = import.meta.env.VITE_API_URL;
     const datasetsURL = "https://bulks-faostat.fao.org/production/datasets_E.json"
+    const highlightedCodes = ['GCE']
 
     const datasets = ref<FaostatDatasets | null>(null);
 
@@ -44,6 +49,10 @@
         } catch (error) {
             console.error("Error fetching date data:", error);
         }
+    }
+
+    function handle_dataset_select(dataset:FaostatDataset) {
+        datasetStore.selectDataset(dataset);
     }
 
     getDatasets() // is ran on setup

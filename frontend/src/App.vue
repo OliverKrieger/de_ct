@@ -1,13 +1,11 @@
 <template>
   <div>
-    <RequestData />
-    <DatasetOverlay />
+    <MainUI />
   </div>
 </template>
 
 <script setup lang="ts">
-  import RequestData from './components/data_requests/RequestDatasets.vue'
-  import DatasetOverlay from './components/utils/DatasetOverlay.vue'
+  import MainUI from './components/dashboard/MainUI.vue';
 </script>
 
 <style scoped>

@@ -75,4 +75,4 @@ jobs:
           
       - name: Set the function host key
         run: |
-          az functionapp keys set --name ${{ secrets.AZURE_FUNCTION_APP_NAME }} --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --key-type functionKeys --key-name dataservicekey --key-value ${{ secrets.FUNCTION_HOST_KEY }}
+          az functionapp keys set --name ${{ secrets.AZURE_FUNCTION_APP_NAME }} --resource-group ${{ secrets.AZURE_RESOURCE_GROUP }} --key-type functionKeys --key-name dataservicekey --key-value ${{ secrets.VITE_FUNCTION_HOST_KEY }}

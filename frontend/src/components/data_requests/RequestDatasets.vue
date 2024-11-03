@@ -6,13 +6,6 @@
                 <div class="dataset-card" @click="handle_dataset_select(dataset)">
                     <h2 class="text-l">{{ dataset.DatasetName }}</h2>
                     <p><strong>Code:</strong> <span :class="highlightedCodes.includes(dataset.DatasetCode) ? 'text-rose-500' : ''"> {{ dataset.DatasetCode }} </span></p>
-                    <!-- <p><strong>Description:</strong> {{ dataset.DatasetDescription }}</p>
-                    <p><strong>Contact:</strong> {{ dataset.Contact }}</p>
-                    <p><strong>Email:</strong> {{ dataset.Email }}</p>
-                    <p><strong>Last Updated:</strong> {{ dataset.DateUpdate }}</p>
-                    <p><strong>File Size:</strong> {{ dataset.FileSize }}</p>
-                    <p><strong>File Type:</strong> {{ dataset.FileType }}</p>
-                    <p><strong>File Location:</strong> {{ dataset.FileLocation }}</p> -->
                 </div>
             </div>
         </div>

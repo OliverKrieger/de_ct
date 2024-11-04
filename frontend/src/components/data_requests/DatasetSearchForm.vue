@@ -25,6 +25,16 @@
                         </option>
                     </select>
                 </div>
+
+                <div>
+                    <label class="font-bold text-slate-400" for="elementSelect">Select Element:</label>
+                    <select id="elementSelect" v-model="selectedElement" required>
+                        <option value="" disabled>Select an item</option>
+                        <option v-for="element in elementList" :key="element" :value="element">
+                            {{ element }}
+                        </option>
+                    </select>
+                </div>
             </div>
 
             <fieldset class="mt-5">
@@ -56,23 +66,26 @@
     import { DatasetSearchFormPayload } from '../../types/type_dataset_search';
 
     const emit = defineEmits<{
-        (e: 'form-submitted', payload: { startYear: number; endYear: number; item: string; countries: string[] }): void;
+        (e: 'form-submitted', payload: { startYear: number; endYear: number; item: string; element:string; countries: string[] }): void;
     }>();
 
     const itemsList = ['Barley', 'Wheat', 'Oats'];
+    const elementList = ['Crops total (Emissions N2O)'];
     const countriesList = ['United Kingdom of Great Britain and Northern Ireland', 'Portugal'];
 
     const startYear = ref<number | null>(1970);
     const endYear = ref<number | null>(2020);
     const selectedItem = ref<string | null>('Barley');
     const selectedCountries = ref<string[]>([]);
+    const selectedElement = ref<string | null>('Crops total (Emissions N2O)');
     const errorMessage = ref<string>('');
 
     const isValidInput = computed(() => {
         const isYearValid = startYear.value !== null && endYear.value !== null && startYear.value <= endYear.value;
         const isItemsSelected = selectedItem.value !== null;
         const isCountriesSelected = selectedCountries.value.length > 0;
-        return isYearValid && isItemsSelected && isCountriesSelected;
+        const isElementSelected = selectedElement.value !== null;
+        return isYearValid && isItemsSelected && isElementSelected && isCountriesSelected;
     });
 
     function submitForm() {
@@ -87,6 +100,7 @@
             startYear: startYear.value!, // Use non-null assertion
             endYear: endYear.value!, // Use non-null assertion
             item: selectedItem.value!,
+            element: selectedElement.value!,
             countries: selectedCountries.value,
         };
 

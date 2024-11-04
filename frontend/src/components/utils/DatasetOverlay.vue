@@ -40,7 +40,12 @@
 
     function fetchData(){
         clear()
-        faoVisStore.fetchDataset(dataset.value)
+        if(dataset && dataset.value){
+            faoVisStore.fetchDataset(dataset.value)
+        }
+        else{
+            console.log("ERROR - No dataset value!")
+        }
     }
 </script>
 

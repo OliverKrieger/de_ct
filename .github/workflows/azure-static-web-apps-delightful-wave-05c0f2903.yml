@@ -62,7 +62,7 @@ jobs:
           action: "upload"
           app_location: "frontend"
           api_location: ""
-          output_location: "frontend/dist"
+          output_location: ""
           github_id_token: ${{ steps.idtoken.outputs.result }}
 
   #     - name: Install OIDC Client from Core Package

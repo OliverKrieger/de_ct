@@ -36,6 +36,7 @@ jobs:
 
       - name: Install dependencies and build frontend
         env:
+          VITE_API_URL: ${{ secrets.VITE_API_URL }}
           VITE_FUNCTION_HOST_KEY: ${{ secrets.VITE_FUNCTION_HOST_KEY }}
         run: |
           cd frontend

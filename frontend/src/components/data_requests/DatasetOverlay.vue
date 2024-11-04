@@ -1,6 +1,6 @@
 <template>
     <teleport to="body">
-        <div v-if="dataset" class="overlay fixed max-h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center content-center p-4 sm:p-8 max-h-fit" @click.self="clear">
+        <div v-if="dataset" class="overlay fixed max-h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center content-center p-4 sm:p-8" @click.self="clear">
             <div class="overlay-content p-4 bg-gray-900 relative w-full max-h-[100vh] overflow-y-auto">
                 <button class="bg-gray-700 hover:bg-gray-800 hover:border-gray-800 text-white font-bold sm:py-2 sm:px-4 py-0.25 px-1.5 rounded transition-all duration-300 absolute top-1 right-1 sm:top-4 sm:right-4" @click="clear">X</button>
                 <div class="content">

@@ -7,7 +7,7 @@ yarn-error.log*
 
 # TypeScript
 *.tsbuildinfo
-*.d.ts
+# *.d.ts
 *.map
 .env
 

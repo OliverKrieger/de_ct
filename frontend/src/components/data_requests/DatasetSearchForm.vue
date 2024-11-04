@@ -42,7 +42,7 @@
                 <div class="flex justify-center flex-col w-96 m-auto">
                     <div v-for="country in countriesList" :key="country">
                         <label class="flex flex-row items-center justify-between">
-                            <span>{{ country }}</span>
+                            <span class="text-slate-200">{{ country }}</span>
                             <div>
                                 <input
                                     type="checkbox"

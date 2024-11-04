@@ -4,9 +4,6 @@
             <h1 class="text-xl text-rose-500">Crops total (Emissions N2O)</h1>
             <div v-for="(countryData, countryName) in countryDataset" :key="countryName">
                 <h2>{{ countryName }}</h2>
-                <!-- <p><strong>Area Code:</strong> {{ countryData['Area Code'] }}</p>
-                <p><strong>Years:</strong> {{ countryData.Years.join(', ') }}</p>
-                <p><strong>Values:</strong> {{ countryData.Values.join(', ') }}</p> -->
                 <ChartVis 
                     :labels="countryData.Years"
                     :label="countryName"
@@ -25,7 +22,7 @@
 </template>
 
 <script setup lang="ts">
-    import { ref, watch } from 'vue'
+    import { ref } from 'vue'
     import Loader from '../utils/Loader.vue';
     import ChartVis from './ChartVis.vue';
 
@@ -42,13 +39,6 @@
     function clear(){
         faoVisStore.clearDataset();
     }
-
-    watch(countryDataset, (newDataset) => {
-        if (newDataset) {
-            // const labels = newDataset["Portugal"].Years;
-            // const data = newDataset["Portugal"].Values;
-        }
-    });
 </script>
 
 <style scoped>

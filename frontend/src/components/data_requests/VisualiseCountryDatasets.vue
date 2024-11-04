@@ -5,8 +5,8 @@
             <div v-for="(countryData, countryName) in countryDataset" :key="countryName">
                 <h2>{{ countryName }}</h2>
                 <ChartVis 
-                    :labels="countryData.Years"
-                    :label="countryName"
+                    :labels="countryData.Years.map(num => num.toString())"
+                    :label="countryName.toString()"
                     :data="countryData.Values"
                     backgroundColor="#42A5F5"
                 />

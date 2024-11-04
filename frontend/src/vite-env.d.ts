@@ -30,11 +30,3 @@ declare module 'vue-chartjs' {
         chartOptions?: ChartOptions; // Use ChartOptions for options
     }
 }
-
-// interface ImportMetaEnv {
-//     readonly VITE_API_URL: string; // Add other environment variables here
-// }
-
-// interface ImportMeta {
-//     readonly env: ImportMetaEnv;
-// }

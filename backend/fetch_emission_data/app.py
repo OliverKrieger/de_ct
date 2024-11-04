@@ -7,6 +7,7 @@ import pandas as pd
 from urllib.parse import urlparse
 from io import BytesIO
 import logging
+import json
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
@@ -15,7 +16,12 @@ CORS(app, origins=["http://localhost:5173"])
 def fetch_emission_data():
     logging.info('Fetching data from ZIP')
     url = request.args.get("url")
-
+    payload = request.args.get("payload")
+    if payload:
+        payload = json.loads(payload)
+    else:
+        return jsonify({"error": "playload parameter is required"}), 400
+    
     if not url:
         return jsonify({"error": "URL parameter is required"}), 400 # if no url variable given, return 400
 
@@ -29,15 +35,16 @@ def fetch_emission_data():
         zip_name = os.path.splitext(zip_filename)[0] # Remove the ".zip" extension
 
         with zipfile.ZipFile(BytesIO(response.content)) as z:
-            # List of files in the ZIP
             file_list = z.namelist()
             csv_filename = f"{zip_name}.csv"
             if csv_filename in file_list:
                 logging.info('CSV to JSON')
                 with z.open(csv_filename) as csv_file:
-                    df = pd.read_csv(csv_file, encoding='latin1') # make dataframe
-                    # data = df.to_json(orient='records')  # Convert to JSON
-                    data = filterData(df.to_dict(orient='records'))  # Convert to JSON
+                    df = pd.read_csv(csv_file, dtype=str, encoding='latin1') # make dataframe
+                    df["Year"] = pd.to_numeric(df["Year"], errors="coerce")
+                    df["Value"] = pd.to_numeric(df["Value"], errors="coerce")
+                    df = df.fillna("")
+                    data = filterData(df.to_dict(orient='records'), payload)  # Convert to JSON
                     return jsonify(data)
             else:
                 logging.error("No CSV file found in the ZIP archive.")
@@ -47,10 +54,17 @@ def fetch_emission_data():
         logging.error(f"Error fetching data: {str(e)}")
         return jsonify({"error": str(e)}), 500 # if error here, return 500 error
 
-def filterData(records_data:dict) -> dict:
+def filterData(records_data:dict, payload:any) -> dict:
+    print("Filtering Data...")
+    start_year = payload.get('startYear')
+    end_year = payload.get('endYear')
+    selected_item = payload.get('item')
+    selected_element = payload.get("element")
+    selected_countries = payload.get('countries')
+    
     filteredData:dict = {}
     for entry in records_data:
-        if entry["Element"] == "Crops total (Emissions N2O)" and entry["Year"] >= 1970 and entry["Year"] <= 2020 and entry["Item"] == "Barley" and (entry["Area"] == "United Kingdom of Great Britain and Northern Ireland" or entry["Area"] == "Portugal"):
+        if entry["Element"] == selected_element and entry["Year"] >= start_year and entry["Year"] <= end_year and entry["Item"] == selected_item and entry["Area"] in selected_countries:
             if entry["Area"] not in filteredData:
                 filteredData[entry["Area"]] = {
                     "Area Code": entry["Area Code"],

@@ -50,8 +50,8 @@
 
     function fetchData(){
         clear()
-        if(dataset && dataset.value){
-            faoVisStore.fetchDataset(dataset.value)
+        if(dataset && dataset.value && submittedData && submittedData.value){
+            faoVisStore.fetchDataset(dataset.value, submittedData.value)
         }
         else{
             console.log("ERROR - No dataset value!")

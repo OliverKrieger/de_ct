@@ -70,7 +70,7 @@
     }>();
 
     const itemsList = ['Barley', 'Wheat', 'Oats'];
-    const elementList = ['Crops total (Emissions N2O)'];
+    const elementList = ['Crops total (Emissions N2O)', 'Crop residues (Emissions N2O)'];
     const countriesList = ['United Kingdom of Great Britain and Northern Ireland', 'Portugal'];
 
     const startYear = ref<number | null>(1970);

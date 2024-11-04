@@ -35,10 +35,15 @@ jobs:
         run: yarn cache clean
 
       - name: Install dependencies and build frontend
+        env:
+          VITE_FUNCTION_HOST_KEY: ${{ secrets.VITE_FUNCTION_HOST_KEY }}
         run: |
           cd frontend
           yarn install
           yarn build
+
+      - name: List build output
+        run: ls -R frontend/dist
 
       - name: Get Id Token
         uses: actions/github-script@v6

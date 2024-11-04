@@ -1,7 +1,7 @@
 <template>
     <teleport to="body">
         <div v-if="dataset" class="overlay p-4 overflow-y-scroll fixed top-0 left-0 right-0 bottom-0 flex content-center items-center" @click.self="clear">
-            <div class="overlay-content bg-gray-900 relative">
+            <div class="overlay-content p-4 bg-gray-900 relative">
                 <button class="bg-gray-700 hover:bg-gray-800 hover:border-gray-800 text-white font-bold py-2 px-4 rounded transition-all duration-300 absolute top-4 right-4" @click="clear">X</button>
                 <div class="content">
                     <h2 class="text-xl underline text-center max-w-96 mx-auto mt-2">{{ dataset.DatasetName }}</h2>

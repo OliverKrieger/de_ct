@@ -30,6 +30,7 @@
     const datasetStore = handlerDatasetStore();
 
     const apiURL = import.meta.env.VITE_API_URL;
+    const apiKEY = import.meta.env.VITE_FUNCTION_HOST_KEY;
     const datasetsURL = "https://bulks-faostat.fao.org/production/datasets_E.json"
     const highlightedCodes = ['GCE']
 
@@ -37,7 +38,7 @@
 
     async function getDatasets(){
         try {
-            const response = await axios.get(`${apiURL}/fetch_data?url=${datasetsURL}`);
+            const response = await axios.get(`${apiURL}/fetch_data?url=${datasetsURL}&code=${apiKEY}`);
             datasets.value = response.data;
         } catch (error) {
             console.error("Error fetching date data:", error);

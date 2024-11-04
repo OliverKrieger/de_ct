@@ -12,7 +12,6 @@ export const handlerFaoVisStore = defineStore('faoVis', {
     }),
     actions: {
         async fetchDataset(dataset: FaostatDataset) {
-            console.log("Fetching data: ", dataset.FileLocation)
             this.selectedDataset = dataset;
             this.loading = true;
             this.error = null;

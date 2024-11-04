@@ -40,7 +40,6 @@
 
     function handleFormSubmission(payload:DatasetSearchFormPayload) {
         submittedData.value = payload; // Store the data from the child component
-        console.log('Data submitted from child:', payload);
         fetchData();
     }
 

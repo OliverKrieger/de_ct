@@ -1,17 +1,17 @@
 <template>
     <teleport to="body">
-        <div v-if="dataset" class="overlay p-4 overflow-y-scroll fixed top-0 left-0 right-0 bottom-0 flex content-center items-center" @click.self="clear">
-            <div class="overlay-content p-4 bg-gray-900 relative">
-                <button class="bg-gray-700 hover:bg-gray-800 hover:border-gray-800 text-white font-bold py-2 px-4 rounded transition-all duration-300 absolute top-4 right-4" @click="clear">X</button>
+        <div v-if="dataset" class="overlay fixed max-h-full inset-0 bg-black bg-opacity-50 flex items-center justify-center content-center p-4 sm:p-8 max-h-fit" @click.self="clear">
+            <div class="overlay-content p-4 bg-gray-900 relative w-full max-h-[100vh] overflow-y-auto">
+                <button class="bg-gray-700 hover:bg-gray-800 hover:border-gray-800 text-white font-bold sm:py-2 sm:px-4 py-0.25 px-1.5 rounded transition-all duration-300 absolute top-1 right-1 sm:top-4 sm:right-4" @click="clear">X</button>
                 <div class="content">
-                    <h2 class="text-xl underline text-center max-w-96 mx-auto mt-2">{{ dataset.DatasetName }}</h2>
+                    <h2 class="text-xl underline text-center max-w-96 mx-auto mt-2 mb-4 sm:mb-0">{{ dataset.DatasetName }}</h2>
                     <p><strong>Code:</strong> {{ dataset.DatasetCode }} </p>
                     <p><strong>Contact:</strong> {{ dataset.Contact }}</p>
                     <p><strong>Email:</strong> {{ dataset.Email }}</p>
                     <p><strong>Last Updated:</strong> {{ dataset.DateUpdate }}</p>
                     <p><strong>File Size:</strong> {{ dataset.FileSize }}</p>
                     <p><strong>File Type:</strong> {{ dataset.FileType }}</p>
-                    <p><strong>File Location:</strong> {{ dataset.FileLocation }}</p>
+                    <p class="break-words"><strong>File Location:</strong> {{ dataset.FileLocation }}</p>
                     <p class="my-2"><strong>Description:</strong> {{ dataset.DatasetDescription }}</p>
                 </div>
                 <DatasetSearchForm @form-submitted="handleFormSubmission" />

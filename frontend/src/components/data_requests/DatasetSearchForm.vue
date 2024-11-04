@@ -1,11 +1,11 @@
 <template>
     <div class="dataset-search-form bg-slate-800 p-6">
-        <h2 class="text-xl text-rose-500">Select Data Settings</h2>
+        <h2 class="text-xl text-rose-500 text-center sm:text-left">Select Data Settings</h2>
 
         <div v-if="errorMessage">{{ errorMessage }}</div>
 
         <form @submit.prevent="submitForm">
-            <div class="input-settings flex justify-between">
+            <div class="input-settings flex flex-col sm:flex-row justify-between">
                 <div>
                     <label class="font-bold text-slate-400" for="startYear">Start Year:</label>
                     <input type="number" v-model="startYear" id="startYear" required />
@@ -56,7 +56,7 @@
                 </div>
             </fieldset>
 
-            <button type="submit" :disabled="!isValidInput" class="bg-rose-500 hover:bg-rose-700 hover:border-rose-700 text-white font-bold py-2 px-4 mt-2 rounded transition-all duration-300 cursor-pointer">Load Data</button>
+            <button type="submit" :disabled="!isValidInput" class="bg-rose-500 hover:bg-rose-700 hover:border-rose-700 text-white font-bold py-2 px-4 mt-6 sm:mt-2 rounded transition-all duration-300 cursor-pointer w-full sm:w-auto">Load Data</button>
         </form>
     </div>
 </template>

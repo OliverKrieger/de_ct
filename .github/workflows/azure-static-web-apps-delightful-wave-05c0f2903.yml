@@ -23,6 +23,9 @@ jobs:
           submodules: true
           lfs: false
 
+      - name: Install OIDC Client from Core Package
+        run: npm install @actions/core@1.6.0 @actions/http-client
+        
       - name: Set up Node.js
         uses: actions/setup-node@v2
         with:

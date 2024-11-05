@@ -8,12 +8,19 @@ from urllib.parse import urlparse
 from io import BytesIO
 import logging
 import json
+import os
+
+CUSTOM_API_KEY = os.getenv("VITE_FUNCTION_HOST_KEY")
 
 app = Flask(__name__)
 CORS(app, origins=["http://localhost:5173"])
 
 @app.route("/fetch_emission_data", methods=["GET"])
 def fetch_emission_data():
+    request_key = request.args.get("code")
+    if request_key != CUSTOM_API_KEY:
+        return jsonify({"error": "Invalid API Key"}), 403
+    
     logging.info('Fetching data from ZIP')
     url = request.args.get("url")
     payload = request.args.get("payload")
